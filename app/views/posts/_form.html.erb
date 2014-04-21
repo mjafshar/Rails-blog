@@ -1,0 +1,22 @@
+<%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+  <div id="error_messages">
+    <h3><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h3>
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.text_field :title, placeholder: "Blog title" %>
+  </p>
+  <p>
+    <%= f.text_area :body, placeholder: "Blog content", size: "60x12" %>
+  </p>
+  <p>
+    <%= f.submit "Post" %>
+  </p>
+<% end %>

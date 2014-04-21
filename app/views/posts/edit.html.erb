@@ -1,0 +1,6 @@
+<div class="container">
+  <%= link_to "Home", posts_path %>
+  <h2>Edit Post</h2>
+  <%= render 'form' %>
+  <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>
