@@ -1,3 +1,3 @@
 == README
 
-[heroku blog app](http://afshar-blog.herokuapp.com/)
+http://afshar-blog.herokuapp.com/
