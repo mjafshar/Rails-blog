@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :posts do # automatic way to build RESTful routes
+  get '/users/signup' => 'users#new', as: :signup
+  resources :users, except: :new do
+    resources :posts, except: [:show, :index] # automatic way to build RESTful routes
+  end
+  resources :posts, except: [:show, :index] do # automatic way to build RESTful routes
     resources :comments # adds comments as nested routes
   end
+
+  resources :posts, only: [:show, :index]
   # get    '/posts'          => 'posts#index'     # index: display a list of all posts
   # get    '/posts/new'      => 'posts#new'       # new: return an HTML form for creating a new post
   # post   '/posts'          => 'posts#create'    # create: create a new post
@@ -12,15 +18,13 @@ Rails.application.routes.draw do
   # delete '/posts/:id'      => 'posts#destroy'   # destroy:
   # Users
 
-  # resources :users
-  # get '/signup' => 'users#new'
 
   # Sessions
-  # get    '/login'  => 'sessions#new'
-  # post   '/login'  => 'sessions#create'
-  # delete '/logout' => 'sessions#destroy', :via => :delete
+  get    '/login'  => 'sessions#new'
+  post   '/login'  => 'sessions#create'
+  delete '/logout' => 'sessions#destroy', :via => :delete
 
-  root :to => 'posts#index'
+  root :to => 'users#index'
 end
 
 # The priority is based upon order of creation: first created -> highest priority.
